@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+        Add Your Article
+{% endblock %}
+
+
+{% block body %}
+{% if user.is_authenticated %}
+<h1>Add Your Article</h1>
+<div class ="form_group">
+    <form method = "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-success">Post</button> <br>
+    
+    </form>
+</div>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("user").value = name;
+</script>
+
+<br>
+<a href = {% url 'home'  %} class="btn btn-success">Home</a>
+{% else %}
+Vaaag Eihante!!!
+{% endif %}
+{% endblock %}
